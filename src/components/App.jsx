@@ -10,7 +10,15 @@ function App() {
 
   function addNote(newNote) {
     setNotes((prevNotes) => {
-      return [...prevNotes, newNote];
+      const noteExists = prevNotes.some(
+        (note) =>
+          note.title === newNote.title && note.content === newNote.content
+      );
+      if (noteExists) {
+        return prevNotes;
+      } else {
+        return [...prevNotes, newNote];
+      }
     });
   }
 
